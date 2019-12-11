@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" >
+        <meta charset="UTF-8">
+        <title>Солнечная система</title>
+    </head>
+    <body>
+        <section class="clearfix">
+            <ul class="solarsystem">
+
+                <li class="sun">
+                    <a href="#sun">
+                        <span>Солнце</span>
+                    </a>
+                </li>
+
+                {% for planet in object_list %}
+                    <li class="{{ planet.code }}">
+                        <a href="#{{ planet.code }}">
+                            <span>{{ planet.name }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <ul id="descriptions">
+                <li>
+                    <h2 id="sun">Солнце</h2>
+                    <p>
+                        <strong>Солнце</strong> — звезда Солнечной системы и её главный компонент.
+                        Положение Солнца на главной последовательности показывает,
+                        что оно ещё не исчерпало свой запас водорода для ядерного синтеза
+                        и находится примерно в середине своей эволюции.
+                        Сейчас Солнце постепенно становится более ярким,
+                        на более ранних стадиях развития его яркость составляла лишь 70 % от сегодняшне
+                    </p>
+                </li>
+                {% for planet in object_list %}
+                    <li class="{{ planet.code }}">
+                        <h2 id="{{ planet.code }}">{{ planet.name }}</h2>
+                        <p>{{ planet.description }}"</p>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </section>
+    </body>
+</html>
